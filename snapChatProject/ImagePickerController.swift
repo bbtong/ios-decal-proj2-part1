@@ -10,6 +10,9 @@ import UIKit
 
 class ImagePickerController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    
+    var selectedImage: UIImage?
+    
     @IBOutlet var imageCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +24,23 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
         super.didReceiveMemoryWarning()
     }
     
-
+    /* Saves the image then calls for the segue. */
     func selectImage(_ image: UIImage) {
-        //The image being selected is passed in as "image".
+        //The image being selected is passed in as "image".\
+        selectedImage = image
+        performSegue(withIdentifier: "selectToFeed", sender: self)
     }
     
+    /* Sends the selected image over to the feed selector. */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "selectToFeed" {
+                if let dest = segue.destination as? postingController {
+                    dest.selectedImage = selectedImage
+                }
+            }
+        }
+    }
     
     
     //DON'T MODIFY CODE HERE AND BELOW!

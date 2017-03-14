@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 // This is the only line of code you should be modifying
-var threads: [String: [UIImage]] = ["Memes": [], "Dog Spots": [], "Random": []]
+// MODIFIED: Now takes in a Snapchat object.
+var threads: [String: [Snapchat]] = ["Memes": [], "Dog Spots": [], "Random": []]
 //
 
 let threadNames = ["Memes", "Dog Spots", "Random"]
